@@ -1,0 +1,9 @@
+/* CSS for EdcastXForumXBlock */
+
+.edcastxforum_block .count {
+    font-weight: bold;
+}
+
+.edcastxforum_block p {
+    cursor: pointer;
+}
