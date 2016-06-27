@@ -28,7 +28,7 @@ class EdcastXForumXBlock(XBlock):
         js_vals = {
         "course_id": self.course_id.to_deprecated_string(),
         "course_url": urllib.quote(self.course_id.to_deprecated_string())
-	}
+	   }
         html = self.resource_string("static/html/edcastxforum.html")
         frag = Fragment(html.format(self=js_vals))
         frag.add_css(self.resource_string("static/css/edcastxforum.css"))
