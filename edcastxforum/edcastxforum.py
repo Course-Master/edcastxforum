@@ -1,7 +1,7 @@
 """TO-DO: Write a description of what this XBlock is."""
-
+import urllib
 import pkg_resources
-
+from django.conf import settings
 from xblock.core import XBlock
 from xblock.fields import Scope, Integer
 from xblock.fragment import Fragment
@@ -25,11 +25,15 @@ class EdcastXForumXBlock(XBlock):
         The primary view of the EdcastXForumXBlock, shown to students
         when viewing courses.
         """
+        js_vals = {
+        "course_id": self.course_id.to_deprecated_string(),
+        "course_url": urllib.quote(self.course_id.to_deprecated_string())
+	}
         html = self.resource_string("static/html/edcastxforum.html")
-        frag = Fragment(html.format(self=self))
+        frag = Fragment(html.format(self=js_vals))
         frag.add_css(self.resource_string("static/css/edcastxforum.css"))
         frag.add_javascript(self.resource_string("static/js/src/edcastxforum.js"))
-        frag.initialize_js('EdcastXForumXBlock')
+        frag.initialize_js('EdcastXForumXBlock', js_vals)
         return frag
         
     # TO-DO: change this to create the scenarios you'd like to see in the
