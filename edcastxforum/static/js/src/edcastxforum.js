@@ -1,29 +1,13 @@
 /* Javascript for EdcastXForumXBlock. */
 function EdcastXForumXBlock(runtime, element) {
-
-    function updateCount(result) {
-        $('.count', element).text(result.count);
-    }
-
-    var handlerUrl = runtime.handlerUrl(element, 'increment_count');
-
-    $('p', element).click(function(eventObject) {
-        $.ajax({
-            type: "POST",
-            url: handlerUrl,
-            data: JSON.stringify({"hello": "world"}),
-            success: updateCount
-        });
-    });
-
     $(function ($) {
         /* Here's where you'd do things on page load. */
-	var msg = {event: "parent.geturl", data: 'test-data'}
+        var msg = {event: "parent.geturl", data: 'test-data'}
         parent.postMessage(JSON.stringify(msg), '*');
         window.addEventListener('message', function(event) {
 		var event_data = JSON.parse(event.data);
 		if (event_data.event == 'child.geturl'){
-		var loc = window.location['pathname'];
+            var loc = window.location['pathname'];
         	var location_id = loc.replace(/^\/|\/$/g, '').split("/courseware/")[1].replace("/","-")
         	var block_id = $('.seq_other.active').attr('data-edcast-unit-id');
         	var context_id = location_id.concat('-').concat(block_id);
