@@ -1,5 +1,5 @@
 /* Javascript for EdcastXForumXBlock. */
-function EdcastXForumXBlock(runtime, element) {
+function EdcastXForumXBlock(runtime, element, data) {
     $(function ($) {
         /* Here's where you'd do things on page load. */
         var msg = {event: "parent.geturl", data: 'test-data'}
